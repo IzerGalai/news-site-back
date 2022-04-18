@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tegis",
+  "info": {
+    "singularName": "tag",
+    "pluralName": "tegis",
+    "displayName": "Теги"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "news": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::news-item.news-item",
+      "inversedBy": "tags"
+    }
+  }
+}
