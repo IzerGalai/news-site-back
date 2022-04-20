@@ -26,19 +26,20 @@
       "type": "text"
     },
     "preview_img": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": false
-    },
-    "img": {
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
+      ]
+    },
+    "img": {
       "type": "media",
-      "multiple": false
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "text": {
       "type": "richtext",
@@ -55,6 +56,11 @@
       "relation": "manyToMany",
       "target": "api::tag.tag",
       "inversedBy": "news"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
     }
   }
 }
