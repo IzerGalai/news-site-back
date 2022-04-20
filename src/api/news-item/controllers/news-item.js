@@ -21,13 +21,24 @@
   },
 
   // Method 3: Replacing a core action
-  async findOne(ctx) {
-    const { id } = ctx.params;
+  /*async findOne(ctx) {
+    const { slug } = ctx.params;
     const { query } = ctx;
 
-    const entity = await strapi.service('api::news-item.news-item').findOne(id, query);
+    const entity = await strapi.service('api::news-item.news-item').findOne(slug, query);
     const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
 
     return this.transformResponse(sanitizedEntity);
+  },*/
+
+  async findOne(ctx) {
+    const { id: slug } = ctx.params;
+    const { query } = ctx;
+    if (!query.filters) query.filters = {}
+    query.filters.slug = { '$eq': slug }
+    const entity = await strapi.service('api::news-item.news-item').find(query);
+    const { results } = await this.sanitizeOutput(entity, ctx);
+
+    return this.transformResponse(results[0]);
   }
 }))
