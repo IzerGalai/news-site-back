@@ -17,11 +17,6 @@
       "unique": false,
       "required": true
     },
-    "code": {
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
     "description": {
       "type": "text"
     },
